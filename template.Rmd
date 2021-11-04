@@ -1,0 +1,45 @@
+---
+title: "writing functions"
+output: github_document
+---
+
+```{r, echo = FALSE, message=FALSE}
+library(tidyverse)
+library(rvest)
+```
+
+## do something simple
+
+```{r}
+x_vec = rnorm(25, mean = 5, sd = 3)
+
+(x_vec - mean(x_vec)) / sd(x_vec)
+```
+
+function compute z score
+
+```{r}
+z_scores = function(x) {
+
+  z = (x - mean(x)) / sd(x)
+  return(z)
+  
+}
+
+z_scores(x_vec)
+```
+
+```{r}
+z_scores = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop("Argument x should be numeric")
+  } else if (length(x) == 1) {
+    stop("Z scores cannot be computed for length 1 vectors")
+  }
+  
+  z = mean(x) / sd(x)
+  
+  z
+}
+```
